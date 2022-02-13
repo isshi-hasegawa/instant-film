@@ -10,12 +10,12 @@ class Main {
     const answer = await enquirer.prompt([{
       type: 'input',
       name: 'key',
-      message: 'Please enter your OMDb API key.'
+      message: 'Please enter your OMDb API key.\n:'
     },{
       type: 'input',
       name: 'title',
       message:
-        "Please enter the title of the movie you want to know the plot of in English. ex.『となりのトトロ』=>'My Neighbor Totoro':"
+        "Please enter the title of the movie you want to know the plot of in English.\nex.『となりのトトロ』=>'My Neighbor Totoro'\n:"
     }])
     this.showMovie(answer)
   }
