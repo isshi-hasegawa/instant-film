@@ -1,4 +1,4 @@
-# instant-film
+# instant-movie
 
 Show Tomatometer and the plot of the movie you inputed.
 
