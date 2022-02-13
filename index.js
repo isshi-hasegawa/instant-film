@@ -4,29 +4,33 @@
 require('dotenv').config()
 const enquirer = require('enquirer')
 const MovieJs = require("movie.js")
-const movies = new MovieJs(process.env.API_KEY);
 
 class Main {
   async run () {
-    const answer = await enquirer.prompt({
+    const answer = await enquirer.prompt([{
       type: 'input',
-      name: 'movieTitle',
+      name: 'key',
+      message: 'Please enter your OMDb API key.'
+    },{
+      type: 'input',
+      name: 'title',
       message:
         "Please enter the title of the movie you want to know the plot of in English. ex.『となりのトトロ』=>'My Neighbor Totoro':"
-    })
-    movies
-      .getByTitle(answer.movieTitle, { plot: 'full' })
+    }])
+    this.showMovie(answer)
+  }
+
+  showMovie(answer) {
+    new MovieJs(answer.key)
+      .getByTitle(answer.title, { plot: 'full' })
       .then((results) => {
         console.log('Title:', results.title)
-        results.ratings.forEach((rating)=>{
-          if(rating.source === 'Rotten Tomatoes'){
-            console.log(rating.value,'%')
+        results.ratings.forEach((rating) => {
+          if (rating.source === 'Rotten Tomatoes') {
+            console.log('Rotten Tomatoes:', rating.value, '%')
           }
         })
         console.log('Plot:', results.plot)
-      })
-      .catch((err) => {
-        console.log(err)
       })
   }
 }
