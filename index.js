@@ -3,7 +3,8 @@
 
 require('dotenv').config()
 const enquirer = require('enquirer')
-const omdb = require('omdb-js')(process.env.OMDB_KEY)
+const MovieJs = require("movie.js")
+const movies = new MovieJs(process.env.API_KEY);
 
 class Main {
   async run () {
@@ -13,17 +14,16 @@ class Main {
       message:
         "Please enter the title of the movie you want to know the plot of in English. ex.『となりのトトロ』=>'My Neighbor Totoro':"
     })
-    omdb
-      .getSpecificMovie(answer.movieTitle, null, { plot: 'full' })
+    movies
+      .getByTitle(answer.movieTitle, { plot: 'full' })
       .then((results) => {
-        if (results.Response === 'False') {
-          return console.log('Movie not found!')
-        }
-        console.log('Title:', results.Title)
-        if (results.Ratings.length === 3) {
-          console.log('Tomatometer:', results.Ratings[1].Value)
-        }
-        console.log('Plot:', results.Plot)
+        console.log('Title:', results.title)
+        results.ratings.forEach((rating)=>{
+          if(rating.source === 'Rotten Tomatoes'){
+            console.log(rating.value,'%')
+          }
+        })
+        console.log('Plot:', results.plot)
       })
       .catch((err) => {
         console.log(err)
