@@ -26,8 +26,8 @@ class Main {
         name: 'key',
         message: 'Please enter your OMDb API key.\n:'
       })
-      fs.writeFile(apiKeyPath, answer.key, (error, result)=> {
-        if (error) console.log(error)
+      fs.writeFile(apiKeyPath, answer.key, (err, result)=> {
+        if (err) console.log(err)
       })
     this.apiKey = answer.key
     }
