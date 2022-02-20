@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/isshi-hasegawa/instant-movie#readme",
   "dependencies": {
-    "dotenv": "^16.0.0",
     "enquirer": "^2.3.6",
     "movie.js": "^3.3.5"
   },
