@@ -1,6 +1,6 @@
 {
   "name": "instant-movie",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Show Tomatometer and the plot of the movie you inputed.",
   "main": "index.js",
   "scripts": {
