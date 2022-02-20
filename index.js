@@ -3,20 +3,19 @@
 
 const enquirer = require('enquirer')
 const fs = require('fs')
-const MovieJs = require("movie.js")
-const apiKeyPath = __dirname + '/apikey.txt'
+const MovieJs = require('movie.js')
+const apiKeyPath = __dirname.join('/apikey.txt')
 
 class Main {
-
   constructor () {
-  if (fs.existsSync(apiKeyPath)) {
-        fs.readFile(apiKeyPath, (err, data) => {
-          this.apiKey = data
-          if (err) throw err;
-        });
-      } else {
-        this.apiKey = ''
-      }
+    if (fs.existsSync(apiKeyPath)) {
+      fs.readFile(apiKeyPath, (err, data) => {
+        this.apiKey = data
+        if (err) throw err
+      })
+    } else {
+      this.apiKey = ''
+    }
   }
 
   async run () {
@@ -26,10 +25,10 @@ class Main {
         name: 'key',
         message: 'Please enter your OMDb API key.\n:'
       })
-      fs.writeFile(apiKeyPath, answer.key, (err, result)=> {
+      fs.writeFile(apiKeyPath, answer.key, (err, result) => {
         if (err) console.log(err)
       })
-    this.apiKey = answer.key
+      this.apiKey = answer.key
     }
     const answer = await enquirer.prompt({
       type: 'input',
@@ -40,7 +39,7 @@ class Main {
     this.showMovie(answer)
   }
 
-  showMovie(answer) {
+  showMovie (answer) {
     new MovieJs(this.apiKey)
       .getByTitle(answer.title, { plot: 'full' })
       .then((results) => {
