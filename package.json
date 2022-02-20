@@ -24,6 +24,7 @@
   "homepage": "https://github.com/isshi-hasegawa/instant-movie#readme",
   "dependencies": {
     "enquirer": "^2.3.6",
+    "fs": "^0.0.1-security",
     "movie.js": "^3.3.5"
   },
   "devDependencies": {
