@@ -1,7 +1,6 @@
 #! /usr/bin/env node
 'use strict'
 
-require('dotenv').config()
 const enquirer = require('enquirer')
 const MovieJs = require("movie.js")
 
