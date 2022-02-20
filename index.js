@@ -4,7 +4,8 @@
 const enquirer = require('enquirer')
 const fs = require('fs')
 const MovieJs = require('movie.js')
-const apiKeyPath = __dirname.join('/apikey.txt')
+const Path = require('path')
+const apiKeyPath = Path.join(__dirname, '/apikey.txt')
 
 class Main {
   constructor () {
